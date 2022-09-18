@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keda.Demo.Contracts", "Keda.Demo.Contracts\Keda.Demo.Contracts.csproj", "{6681F7A6-A0AD-4961-A3A3-1A73F4B2E4B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keda.Demo.TrackingUpdatesGenerator", "Keda.Demo.TrackingUpdatesGenerator\Keda.Demo.TrackingUpdatesGenerator.csproj", "{DAD8A01B-D69E-4BA8-8591-01EBCD2F2DB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keda.Demo.TrackingUpdatesProcessor", "Keda.Demo.TrackingUpdatesProcessor\Keda.Demo.TrackingUpdatesProcessor.csproj", "{032A4C82-53A5-4FC9-BA97-64F2F7EF99C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6681F7A6-A0AD-4961-A3A3-1A73F4B2E4B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6681F7A6-A0AD-4961-A3A3-1A73F4B2E4B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6681F7A6-A0AD-4961-A3A3-1A73F4B2E4B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6681F7A6-A0AD-4961-A3A3-1A73F4B2E4B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAD8A01B-D69E-4BA8-8591-01EBCD2F2DB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAD8A01B-D69E-4BA8-8591-01EBCD2F2DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAD8A01B-D69E-4BA8-8591-01EBCD2F2DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAD8A01B-D69E-4BA8-8591-01EBCD2F2DB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{032A4C82-53A5-4FC9-BA97-64F2F7EF99C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032A4C82-53A5-4FC9-BA97-64F2F7EF99C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032A4C82-53A5-4FC9-BA97-64F2F7EF99C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032A4C82-53A5-4FC9-BA97-64F2F7EF99C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EB48D9A-301F-461B-8C08-2B306A574512}
+	EndGlobalSection
+EndGlobal
