@@ -1,0 +1,81 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Keda.Demo.TrackingUpdatesProcessor/Keda.Demo.TrackingUpdatesProcessor.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "buildconsole",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Keda.Demo.TrackingUpdatesGenerator/Keda.Demo.TrackingUpdatesGenerator.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/Keda.Demo.TrackingUpdatesProcessor/Keda.Demo.TrackingUpdatesProcessor.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/Keda.Demo.TrackingUpdatesProcessor/Keda.Demo.TrackingUpdatesProcessor.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "backend-processor-dapr-debug",
+			"appId": "tracking-updates-processor",
+			"appPort": 5242,
+			"httpPort": 3500,
+			"grpcPort": 50001,
+			"appSsl": false,
+			"type": "dapr",
+			"dependsOn": "build-backend-processor",
+			"componentsPath": "./dapr-components"
+		},
+		{
+            "label": "daprd-down-backend-processor",
+			"appId": "tracking-updates-processor",
+			"type": "daprd-down"
+        },
+        {
+            "label": "build-backend-processor",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Keda.Demo.TrackingUpdatesProcessor/Keda.Demo.TrackingUpdatesProcessor.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+    ]
+}

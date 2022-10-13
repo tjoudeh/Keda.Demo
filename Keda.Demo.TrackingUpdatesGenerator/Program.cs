@@ -8,7 +8,7 @@ namespace Keda.Demo.TrackingUpdatesGenerator
     internal class Program
     {
         private const string topicName = "trackingupdates";
-        private const string connString = "Endpoint=sb://shipmentssvcbus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=M+Qs+y9Nr2yQMlDH83Vv7NREPkZGHftvZE/Siwz8ubE=";
+        private const string connString = "";
 
         static async Task Main(string[] args)
         {
@@ -24,15 +24,24 @@ namespace Keda.Demo.TrackingUpdatesGenerator
         {
             var serviceBusClient = new ServiceBusClient(connString);
             var serviceBusSender = serviceBusClient.CreateSender(topicName);
+            var messagesBatch = new List<ServiceBusMessage>();
 
-            for (int currentCount = 0; currentCount < messagesCount; currentCount++)
+            for (int currentCount = 1; currentCount +1 < messagesCount; currentCount++)
             {
                 var shipment = GenerateShipment();
-                var rawShipment =  JsonSerializer.Serialize(shipment);
+                var rawShipment =  JsonSerializer.Serialize(new { data = shipment });
                 var shipmentMessage = new ServiceBusMessage(rawShipment);
 
-                Console.WriteLine($"Queuing tracking update for Shipment id '{shipment.ShipmentId}' and Waybill '{shipment.WaybillNo}' - Recipient '{shipment.Recipient.Name}' updates on address {shipment.Recipient.NotificationAddress}");
-                await serviceBusSender.SendMessageAsync(shipmentMessage);
+                Console.WriteLine($"{currentCount}. Queuing update for Shipment '{shipment.ShipmentId}' and Waybill '{shipment.WaybillNo}' - Recipient '{shipment.Recipient.Name}' updates on address {shipment.Recipient.NotificationAddress}");
+                
+                messagesBatch.Add(shipmentMessage);
+
+                if (currentCount % 25 == 0)
+                {
+                    Console.WriteLine($"Sending batch of {messagesBatch.Count} messages to the topic");
+                    await serviceBusSender.SendMessagesAsync(messagesBatch);
+                    messagesBatch = new List<ServiceBusMessage>();
+                }
             }
         }
 

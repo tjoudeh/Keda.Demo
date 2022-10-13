@@ -1,5 +1,3 @@
-using Keda.Demo.Contracts;
-using Keda.Demo.TrackingUpdatesProcessor.BackgroundServices;
 
 namespace Keda.Demo.TrackingUpdatesProcessor
 {
@@ -9,13 +7,19 @@ namespace Keda.Demo.TrackingUpdatesProcessor
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddHostedService<TrackingUpdateProcessor>();
-
             builder.Services.AddApplicationInsightsTelemetry();
+
+            builder.Services.AddControllers().AddDapr();
 
             var app = builder.Build();
 
-            app.MapGet("/", () => "Hello World!");
+            app.UseAuthorization();
+
+            app.UseCloudEvents();
+
+            app.MapControllers();
+
+            app.MapSubscribeHandler();
 
             app.Run();
         }

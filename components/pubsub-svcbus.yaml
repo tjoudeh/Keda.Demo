@@ -1,0 +1,14 @@
+# pubsub.yaml for Azure Service Bus component
+componentType: pubsub.azure.servicebus
+version: v1
+metadata:
+- name: connectionString
+  secretRef: sb-root-connectionstring
+- name: consumerID
+  value: "shipments-processor-sub"     
+secrets:
+- name: sb-root-connectionstring
+  value: "<value>"
+# Application scopes  
+scopes:
+- tracking-updates-processor
